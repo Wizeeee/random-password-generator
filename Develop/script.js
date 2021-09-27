@@ -84,13 +84,26 @@ var upperCasedCharacters = [
 // public length variable
 var length = [];
 
+// checks every sinle characters and accept numbers only
+checkUserInput = function (check) {
+  i = 0;
+  while (i != check.length - 1) {
+    if (check[i] >= "0" && check[i] <= "9") {
+      ++i;
+    } else {
+      window.alert("Invalid input. Please enter numbers only");
+      return startFunc();
+    }
+  }
+};
+
 // start func to collect user input
 startFunc = function () {
   debugger;
   length = window.prompt(
     "How many characters would you like your password to contain?"
   );
- 
+  checkUserInput(length);
 };
 
 // fucn to generate password by user request
@@ -98,7 +111,9 @@ startFunc = function () {
 function getPasswordOptions() {
   //accepting only whole number from 8 to 128
   if (length < 8 || length > 128) {
-    window.alert("choose minimum 8 to 128 numbers of characters to proced ");
+    window.alert(
+      "Password length must be 8 to 128 numbers of characters to proceed "
+    );
 
     // start all over again
     return writePassword();
@@ -116,9 +131,62 @@ function getPasswordOptions() {
   // Numberic
   let isNumeric = window.confirm("Click OK to add Numbers");
 
+  // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+  if (
+    hasSpecialCharacters === false &&
+    isNumeric === false &&
+    isLowerCase === false &&
+    isUperCase === false
+  ) {
+    alert("Must select at least one character type");
+    return null;
+  }
 
+  // Object to store user input
+  passwordOptions = {
+    length: length,
+    hasSpecialCharacters: hasSpecialCharacters,
+    isUperCase: isUperCase,
+    isLowerCase: isLowerCase,
+    isNumeric: isNumeric,
+  };
+  return passwordOptions;
+}
 
+// select random
+randomNumber = (max, min) => Math.floor(Math.random() * (max - min)) + min;
 
+// Generate password
+function generatePassword() {
+  console.log("Here is generatePassword Fucn");
+  var options = getPasswordOptions();
+
+  // Create Password by options
+  let result = [];
+  let possibleChar = [];
+
+  if (options.hasSpecialCharacters) {
+    possibleChar = possibleChar.concat(specialCharacters);
+  }
+  if (options.isNumeric) {
+    possibleChar = possibleChar.concat(numericCharacters);
+  }
+  if (options.isLowerCase) {
+    possibleChar = possibleChar.concat(lowerCasedCharacters);
+  }
+  if (options.isUperCase) {
+    possibleChar = possibleChar.concat(upperCasedCharacters);
+  }
+
+  for (let i = 0; i < options.length; i++) {
+    randomIndex = randomNumber(possibleChar.length, 0);
+    result.push(possibleChar[randomIndex]);
+  }
+  console.log(possibleChar);
+
+  // return the password
+  return result.join("");
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
