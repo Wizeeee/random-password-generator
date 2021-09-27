@@ -84,12 +84,26 @@ var upperCasedCharacters = [
 // public length variable
 var length = [];
 
+// checks every sinle characters and accept numbers only
+checkUserInput = function (check) {
+  i = 0;
+  while (i != check.length - 1) {
+    if (check[i] >= "0" && check[i] <= "9") {
+      ++i;
+    } else {
+      window.alert("Invalid input. Please enter numbers only");
+      return startFunc();
+    }
+  }
+};
+
 // start func to collect user input
 startFunc = function () {
   debugger;
   length = window.prompt(
     "How many characters would you like your password to contain?"
   );
+  checkUserInput(length);
 };
 
 // fucn to generate password by user request
@@ -97,7 +111,9 @@ startFunc = function () {
 function getPasswordOptions() {
   //accepting only whole number from 8 to 128
   if (length < 8 || length > 128) {
-    window.alert("choose minimum 8 to 128 numbers of characters to proceed ");
+    window.alert(
+      "Password length must be 8 to 128 numbers of characters to proceed "
+    );
 
     // start all over again
     return writePassword();
