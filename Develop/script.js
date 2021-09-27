@@ -137,6 +137,41 @@ function getPasswordOptions() {
   return passwordOptions;
 }
 
+// select random
+randomNumber = (max, min) => Math.floor(Math.random() * (max - min)) + min;
+
+// Generate password
+function generatePassword() {
+  console.log("Here is generatePassword Fucn");
+  var options = getPasswordOptions();
+
+  // Create Password by options
+  let result = [];
+  let possibleChar = [];
+
+  if (options.hasSpecialCharacters) {
+    possibleChar = possibleChar.concat(specialCharacters);
+  }
+  if (options.isNumeric) {
+    possibleChar = possibleChar.concat(numericCharacters);
+  }
+  if (options.isLowerCase) {
+    possibleChar = possibleChar.concat(lowerCasedCharacters);
+  }
+  if (options.isUperCase) {
+    possibleChar = possibleChar.concat(upperCasedCharacters);
+  }
+
+  for (let i = 0; i < options.length; i++) {
+    randomIndex = randomNumber(possibleChar.length, 0);
+    result.push(possibleChar[randomIndex]);
+  }
+  console.log(possibleChar);
+
+  // return the password
+  return result.join("");
+}
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
