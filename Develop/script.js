@@ -81,7 +81,7 @@ var upperCasedCharacters = [
   "Y",
   "Z",
 ];
-// public length variable
+// public length variable.
 var length = [];
 
 // checks every sinle characters and accept numbers only
@@ -115,7 +115,7 @@ function getPasswordOptions() {
       "Password length must be 8 to 128 numbers of characters to proceed "
     );
 
-    // start all over again
+    // start all over again.
     return writePassword();
   }
 
@@ -142,7 +142,7 @@ function getPasswordOptions() {
     return null;
   }
 
-  // Object to store user input
+  // Object to store user input.
   passwordOptions = {
     length: length,
     hasSpecialCharacters: hasSpecialCharacters,
