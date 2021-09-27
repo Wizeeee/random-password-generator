@@ -87,7 +87,7 @@ var length = [];
 // checks every sinle characters and accept numbers only
 checkUserInput = function (check) {
   i = 0;
-  while (i != check.length - 1) {
+  while (i != check.length) {
     if (check[i] >= "0" && check[i] <= "9") {
       ++i;
     } else {
