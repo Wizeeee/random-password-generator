@@ -99,7 +99,6 @@ checkUserInput = function (check) {
 
 // start func to collect user input
 startFunc = function () {
-  debugger;
   length = window.prompt(
     "How many characters would you like your password to contain?"
   );
