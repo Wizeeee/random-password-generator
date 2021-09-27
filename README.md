@@ -7,6 +7,8 @@
 - HTML
 - CSS
 - JavaScript
+## Website
+https://wizeeee.github.io/random-password-generator/
 ## Contribution
 - Starter Code provided by Carleton University (HTML/CSS and starter for JS).
 - JavaScript modified by Mike O.
