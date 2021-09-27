@@ -90,7 +90,6 @@ startFunc = function () {
   length = window.prompt(
     "How many characters would you like your password to contain?"
   );
- 
 };
 
 // fucn to generate password by user request
@@ -98,7 +97,7 @@ startFunc = function () {
 function getPasswordOptions() {
   //accepting only whole number from 8 to 128
   if (length < 8 || length > 128) {
-    window.alert("choose minimum 8 to 128 numbers of characters to proced ");
+    window.alert("choose minimum 8 to 128 numbers of characters to proceed ");
 
     // start all over again
     return writePassword();
@@ -116,9 +115,27 @@ function getPasswordOptions() {
   // Numberic
   let isNumeric = window.confirm("Click OK to add Numbers");
 
+  // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+  if (
+    hasSpecialCharacters === false &&
+    isNumeric === false &&
+    isLowerCase === false &&
+    isUperCase === false
+  ) {
+    alert("Must select at least one character type");
+    return null;
+  }
 
-
-
+  // Object to store user input
+  passwordOptions = {
+    length: length,
+    hasSpecialCharacters: hasSpecialCharacters,
+    isUperCase: isUperCase,
+    isLowerCase: isLowerCase,
+    isNumeric: isNumeric,
+  };
+  return passwordOptions;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
